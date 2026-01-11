@@ -1,0 +1,86 @@
+{
+  "project": "project-name",
+  "features": [
+    {
+      "category": "setup",
+      "description": "Rust プロジェクトが初期化され、ビルドできる",
+      "steps": [
+        "cargo init でプロジェクトを作成する",
+        "Cargo.toml に必要な依存関係を追加する",
+        "cargo build が成功する",
+        "cargo run が起動する",
+        "基本的なプロジェクト構造が整っている"
+      ],
+      "status": "pending"
+    },
+    {
+      "category": "setup",
+      "description": "clippy が厳格モードで設定され、警告がエラーとして扱われる",
+      "steps": [
+        "clippy.toml または lib.rs に厳格な設定を追加する",
+        "clippy::all, clippy::pedantic, clippy::nursery を deny に設定する",
+        "cargo clippy が通る",
+        "意図的に悪いコードを書くと clippy が検出する",
+        "CI でも同じチェックが実行できる"
+      ],
+      "status": "pending"
+    },
+    {
+      "category": "setup",
+      "description": "rustfmt が設定され、コードフォーマットが強制される",
+      "steps": [
+        "rustfmt.toml に設定を追加する",
+        "cargo fmt --check がフォーマット違反を検出する",
+        "cargo fmt で自動修正できる",
+        "エディタ保存時に自動フォーマットが可能",
+        "CI でフォーマットチェックが実行できる"
+      ],
+      "status": "pending"
+    },
+    {
+      "category": "setup",
+      "description": "テストフレームワークが設定され、カバレッジが測定できる",
+      "steps": [
+        "cargo test でテストが実行できる",
+        "cargo-llvm-cov でカバレッジが測定できる",
+        "テストが失敗すると CI が失敗する",
+        "カバレッジレポートが生成される",
+        "最低カバレッジ閾値が設定されている"
+      ],
+      "status": "pending"
+    },
+    {
+      "category": "core",
+      "description": "メイン機能が動作する",
+      "steps": [
+        "機能の入力を受け付ける",
+        "処理を実行する",
+        "結果を出力する",
+        "エラー時は適切なメッセージを表示する"
+      ],
+      "status": "pending"
+    },
+    {
+      "category": "core",
+      "description": "設定ファイルを読み込める",
+      "steps": [
+        "設定ファイルのパスを指定する",
+        "設定ファイルを読み込む",
+        "設定値がアプリケーションに反映される",
+        "設定ファイルが存在しない場合はデフォルト値を使用する"
+      ],
+      "status": "pending"
+    },
+    {
+      "category": "integration",
+      "description": "外部 API と連携できる",
+      "steps": [
+        "API クライアントを実装する",
+        "認証を設定する",
+        "API リクエストが成功する",
+        "レスポンスを適切に処理する"
+      ],
+      "status": "pending"
+    }
+  ]
+}
