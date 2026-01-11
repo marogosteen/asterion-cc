@@ -16,9 +16,9 @@
 
 #### 完了
 - プロジェクト初期化
-- features.json 作成（N 件の機能を定義）
-- init.sh 作成
-- progress.md 作成
+- .asterion/features.json 作成（N 件の機能を定義）
+- .asterion/init.sh 作成
+- .asterion/progress.md 作成
 
 ### YYYY-MM-DD: 開発環境整備セッション
 

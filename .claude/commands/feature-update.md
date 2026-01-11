@@ -1,10 +1,10 @@
 ---
-description: features.json の修正 - 機能の追加/削除/並び替え/編集
+description: .asterion/features.json の修正 - 機能の追加/削除/並び替え/編集
 context: fork
 agent: feature-updater
 ---
 
-features.json を修正してください。
+.asterion/features.json を修正してください。
 
 作業ディレクトリ: $PWD
 

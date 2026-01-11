@@ -22,14 +22,14 @@ model: inherit
 
 ```
 1. pwd                           # 作業ディレクトリを確認
-2. cat claude-progress.txt       # 前回の進捗を読む
-3. cat features.json             # 機能リストを確認
+2. cat .asterion/progress.md     # 前回の進捗を読む
+3. cat .asterion/features.json   # 機能リストを確認
 4. git log --oneline -20         # 最近のコミットを確認
 ```
 
 ### 2. 開発サーバーの起動
 
-`init.sh` の内容を確認し、開発サーバーを起動してください。
+`.asterion/init.sh` の内容を確認し、開発サーバーを起動してください。
 
 ### 3. 基本機能の検証（デグレチェック）
 
@@ -38,7 +38,7 @@ model: inherit
 
 ### 4. 次の機能を選択
 
-`features.json` から、未完了（status: pending）の機能を1つ選択してください。
+`.asterion/features.json` から、未完了（status: pending）の機能を1つ選択してください。
 
 選択基準：
 - 基本的には**リストの先頭**から順に実装
@@ -99,5 +99,5 @@ model: inherit
 ## 注意事項
 
 - テストが通らない状態で完了としない
-- 問題が発生したら `claude-progress.txt` に記録する
+- 問題が発生したら `.asterion/progress.md` に記録する
 - 1セッションで複数機能を実装しようとしない

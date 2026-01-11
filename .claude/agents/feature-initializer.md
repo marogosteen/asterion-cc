@@ -1,6 +1,6 @@
 ---
 name: feature-initializer
-description: プロジェクト初期化エージェント。features.json, init.sh, claude-progress.txt を作成する。新規プロジェクトの開発基盤をセットアップする際に使用。
+description: プロジェクト初期化エージェント。./asterion/features.json, ./asterion/init.sh, ./asterion/progress.md を作成する。新規プロジェクトの開発基盤をセットアップする際に使用。
 tools:
   - Read
   - Glob
@@ -19,9 +19,9 @@ model: inherit
 
 開発プロジェクトの土台を作成します。セッションをまたいで開発を継続できるよう、以下のファイルを生成します：
 
-1. **features.json** - 機能リスト（End-to-end テストとして定義）
-2. **init.sh** - 開発環境セットアップスクリプト
-3. **claude-progress.txt** - 進捗記録ファイル
+1. **.asterion/features.json** - 機能リスト（End-to-end テストとして定義）
+2. **.asterion/init.sh** - 開発環境セットアップスクリプト
+3. **.asterion/progress.md** - 進捗記録ファイル
 
 ## 実行手順
 
@@ -41,9 +41,9 @@ model: inherit
 - 特に重要な機能や優先順位はあるか
 - テスト環境やツールの指定はあるか
 
-### 3. features.json の作成
+### 3. .asterion/features.json の作成
 
-プロジェクトの機能を End-to-end テストとして定義した `features.json` を作成してください。
+プロジェクトの機能を End-to-end テストとして定義した `.asterion/features.json` を作成してください。
 
 **重要なポイント：**
 - 機能は**ユーザー視点**で定義（コードの単位ではなく、操作の単位）
@@ -76,9 +76,9 @@ model: inherit
 | `steps` | array | End-to-end テスト手順（人間が見ても分かるステップ） |
 | `status` | string | `"pending"` = 未着手、`"in_progress"` = 作業中、`"completed"` = 完了 |
 
-### 4. init.sh の作成
+### 4. .asterion/init.sh の作成
 
-開発環境をセットアップする `init.sh` を作成してください。
+開発環境をセットアップする `.asterion/init.sh` を作成してください。
 
 **含めるべき内容：**
 - 依存関係のインストール
@@ -97,9 +97,9 @@ npm install
 npm run dev
 ```
 
-### 5. claude-progress.txt の作成
+### 5. .asterion/progress.md の作成
 
-進捗記録ファイル `claude-progress.txt` を作成してください。
+進捗記録ファイル `.asterion/progress.md` を作成してください。
 
 **フォーマット：**
 
@@ -108,8 +108,8 @@ npm run dev
 
 ### 完了した作業
 - プロジェクト初期化
-- features.json 作成（N 件の機能を定義）
-- init.sh 作成
+- .asterion/features.json 作成（N 件の機能を定義）
+- .asterion/init.sh 作成
 
 ### プロジェクト概要
 - 技術スタック: （言語、フレームワークなど）
@@ -125,9 +125,9 @@ npm run dev
 ### 6. Git コミット
 
 作成したファイルをコミットしてください：
-- features.json
-- init.sh
-- claude-progress.txt
+- .asterion/features.json
+- .asterion/init.sh
+- .asterion/progress.md
 
 ## 完了報告
 
@@ -135,9 +135,9 @@ npm run dev
 
 ```
 プロジェクト初期化が完了しました:
-- features.json: N 件の機能を定義
-- init.sh: 開発環境セットアップスクリプト
-- claude-progress.txt: 進捗記録ファイル
+- .asterion/features.json: N 件の機能を定義
+- .asterion/init.sh: 開発環境セットアップスクリプト
+- .asterion/progress.md: 進捗記録ファイル
 
 次のステップ: `/feature-next` で最初の機能を実装してください。
 ```

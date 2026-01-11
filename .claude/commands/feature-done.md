@@ -1,6 +1,6 @@
 ---
 description: 機能完了マーク - テスト確認後、status を completed に更新してコミット
-allowed-tools: Read, Write, Edit, Bash(cat:*), Bash(git status), Bash(git log:*), Bash(git add:*), Bash(git commit:*), Bash(npm:*), Bash(yarn:*), Bash(pnpm:*), Bash(cargo:*), Bash(python:*), Bash(./init.sh)
+allowed-tools: Read, Write, Edit, Bash(cat:*), Bash(git status), Bash(git log:*), Bash(git add:*), Bash(git commit:*), Bash(npm:*), Bash(yarn:*), Bash(pnpm:*), Bash(cargo:*), Bash(python:*), Bash(./.asterion/init.sh)
 ---
 
 # Feature Done - 機能完了マーク
@@ -18,12 +18,12 @@ allowed-tools: Read, Write, Edit, Bash(cat:*), Bash(git status), Bash(git log:*)
 
 完了マークをつける前に、もう一度テストを実行してください。
 
-- `features.json` の該当機能の steps を確認
+- `.asterion/features.json` の該当機能の steps を確認
 - 全ての手順が成功することを確認
 
 **テストが失敗した場合は、完了マークをつけずに問題を修正してください。**
 
-### 2. features.json の更新
+### 2. .asterion/features.json の更新
 
 完了した機能の `status` を `"completed"` に変更してください。
 
@@ -47,7 +47,7 @@ allowed-tools: Read, Write, Edit, Bash(cat:*), Bash(git status), Bash(git log:*)
 }
 ```
 
-### 3. claude-progress.txt の更新
+### 3. .asterion/progress.md の更新
 
 今回の作業内容を追記してください：
 
@@ -103,5 +103,5 @@ git commit -m "feat: [機能の説明]"
 
 - **テストが通る状態でのみ**完了マークをつける
 - 部分的な実装で完了としない
-- 問題が発生した場合は `claude-progress.txt` に詳細を記録する
+- 問題が発生した場合は `.asterion/progress.md` に詳細を記録する
 - 次のセッションで分かるように、注意点を残す
