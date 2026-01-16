@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-REPO="marogosteen/asterion"
+REPO="marogosteen/asterion-cc"
 BINARY="asterion"
 INSTALL_DIR="${INSTALL_DIR:-$HOME/.local/bin}"
 
