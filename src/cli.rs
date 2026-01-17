@@ -43,6 +43,10 @@ pub struct Cli {
     /// Disable colored output
     #[arg(long = "no-color", env = "NO_COLOR")]
     pub no_color: bool,
+
+    /// Update to the latest version
+    #[arg(long = "update")]
+    pub update: bool,
 }
 
 impl Cli {

@@ -13,6 +13,7 @@ mod notification;
 mod progress_display;
 mod runner;
 mod stream_parser;
+mod update;
 
 use anyhow::{bail, Result};
 use clap::Parser;
@@ -36,6 +37,11 @@ fn main() -> ExitCode {
 
 fn run() -> Result<()> {
     let cli = Cli::parse();
+
+    // Handle --update before anything else
+    if cli.update {
+        return update::run_update();
+    }
 
     // Initialize logging
     let use_color = log::should_use_color(cli.no_color);
