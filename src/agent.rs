@@ -1,10 +1,11 @@
 use anyhow::{Context, Result};
-use indicatif::{ProgressBar, ProgressStyle};
 use std::io::{BufRead, BufReader};
 use std::process::{Command, Stdio};
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Arc;
-use std::time::Duration;
+
+use crate::progress_display::ProgressDisplay;
+use crate::stream_parser;
 
 /// Build the prompt for the agent
 ///
@@ -52,28 +53,6 @@ Find this feature in {features_ref} by matching the `iteration_id` field.
     )
 }
 
-/// Create a spinner for long-running operations
-pub fn create_spinner(message: &str, use_color: bool) -> ProgressBar {
-    let spinner = ProgressBar::new_spinner();
-
-    let style = if use_color {
-        ProgressStyle::default_spinner()
-            .tick_chars("⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏")
-            .template("{spinner:.cyan} {msg}")
-            .unwrap()
-    } else {
-        ProgressStyle::default_spinner()
-            .tick_chars("|/-\\")
-            .template("{spinner} {msg}")
-            .unwrap()
-    };
-
-    spinner.set_style(style);
-    spinner.set_message(message.to_string());
-    spinner.enable_steady_tick(Duration::from_millis(100));
-    spinner
-}
-
 /// Run the Claude agent with the given prompt
 ///
 /// Returns `Ok(true)` if the agent succeeded, `Ok(false)` if it failed or was interrupted
@@ -83,10 +62,16 @@ pub fn run(
     interrupted: &Arc<AtomicBool>,
     use_color: bool,
 ) -> Result<bool> {
-    let spinner = create_spinner("Claude Code is working...", use_color);
+    let mut display = ProgressDisplay::new(use_color);
 
     let mut child = Command::new(claude_bin)
-        .args(["--dangerously-skip-permissions", "-p", prompt])
+        .args([
+            "--dangerously-skip-permissions",
+            "--output-format",
+            "stream-json",
+            "-p",
+            prompt,
+        ])
         .stdout(Stdio::piped())
         .stderr(Stdio::inherit())
         .spawn()
@@ -94,8 +79,6 @@ pub fn run(
 
     let stdout = child.stdout.take().expect("stdout was piped");
     let reader = BufReader::new(stdout);
-
-    spinner.finish_and_clear();
 
     for line in reader.lines() {
         // Check for interrupt
@@ -105,7 +88,10 @@ pub fn run(
         }
 
         let line = line?;
-        println!("{}", line);
+
+        // Parse the stream event and update display
+        let event = stream_parser::parse_line(&line);
+        display.handle_event(&event);
     }
 
     // Check for interrupt before waiting
@@ -115,5 +101,9 @@ pub fn run(
     }
 
     let status = child.wait()?;
+
+    // Finish display if we didn't get a result event
+    display.finish();
+
     Ok(status.success())
 }

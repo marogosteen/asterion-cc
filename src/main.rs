@@ -4,6 +4,8 @@ mod config;
 mod features;
 mod log;
 mod notification;
+mod progress_display;
+mod stream_parser;
 
 use anyhow::{bail, Result};
 use clap::Parser;
